@@ -1,0 +1,10 @@
+D:\Projects\quality_measurement\src\main\java\quality\calculation\FormulaImpl.java
+D:\Projects\quality_measurement\src\main\java\quality\dto\ResultDTO.java
+D:\Projects\quality_measurement\src\main\java\quality\calculation\QualityCalculator.java
+D:\Projects\quality_measurement\src\main\java\quality\dto\CumulativeDTO.java
+D:\Projects\quality_measurement\src\main\java\quality\exception\WrongFormulaException.java
+D:\Projects\quality_measurement\src\main\java\quality\QualityMeasurementApp.java
+D:\Projects\quality_measurement\src\main\java\quality\calculation\FormulaType.java
+D:\Projects\quality_measurement\src\main\java\quality\dto\MetricDTO.java
+D:\Projects\quality_measurement\src\main\java\quality\dto\CharacteristicDTO.java
+D:\Projects\quality_measurement\src\main\java\quality\dto\SubCharacteristicDTO.java
