@@ -1,10 +1,12 @@
 package com.ptoop.graph.dto;
 
+import java.io.Serializable;
+
 /**
  * @author: Alexey Storozhenko
  * @since: 10.03.2018
  */
-public class CoordinateDTO {
+public class CoordinateDTO implements Serializable{
     private Integer axisX;
     private Integer axisY;
 

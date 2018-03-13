@@ -1,37 +1,41 @@
-package com.ptoop.graph.command;
+package com.ptoop.graph.factory;
 
 import com.ptoop.graph.dto.CoordinateDTO;
 import com.ptoop.graph.model.EllipseFigure;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 /**
  * @author: Alexey Storozhenko
  * @since: 11.03.2018
  */
-public class CreateEllipseCommand extends AbstractCommand<EllipseFigure> {
+public class CreateEllipseFactory extends AbstractFactory<EllipseFigure> {
 
-    public CreateEllipseCommand(BufferedReader br) {
-        super(br);
+    public CreateEllipseFactory(Scanner sc) {
+        super(sc);
     }
 
-    public EllipseFigure execute() throws IOException {
+    public EllipseFigure create() throws IOException {
         System.out.print("Center X value: ");
-        int x1 = Integer.parseInt(br.readLine());
+        while (!sc.hasNextInt()) sc.next();
+        int x1 = sc.nextInt();
         System.out.print("Center Y value: ");
-        int y1 = Integer.parseInt(br.readLine());
+        while (!sc.hasNextInt()) sc.next();
+        int y1 = sc.nextInt();
         System.out.print("A Radius value: ");
-        int radA = Integer.parseInt(br.readLine());
+        while (!sc.hasNextInt()) sc.next();
+        int radA = sc.nextInt();
         System.out.print("B Radius value: ");
-        int radB = Integer.parseInt(br.readLine());
+        while (!sc.hasNextInt()) sc.next();
+        int radB = sc.nextInt();
         Map<String, Integer> values = new HashMap<>();
         values.put("a", radA);
         values.put("b", radB);
-
+        sc.nextLine();
         return new EllipseFigure(new CoordinateDTO(x1, y1), values);
     }
 }

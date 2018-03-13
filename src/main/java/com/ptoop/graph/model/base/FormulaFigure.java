@@ -1,21 +1,24 @@
-package com.ptoop.graph.model;
+package com.ptoop.graph.model.base;
 
 import com.ptoop.graph.dto.CoordinateDTO;
+import com.ptoop.graph.model.FigureName;
 
-import java.util.List;
 import java.util.Map;
+
+import static com.ptoop.graph.model.FigureType.FORMULA;
 
 /**
  * @author: Alexey Storozhenko
  * @since: 10.03.2018
  */
 public abstract class FormulaFigure extends BaseFigure{
-    final private String formula;
-    final private CoordinateDTO center;
-    final private Map<String, Integer> valuesMap;
+    private final String formula;
+    private final CoordinateDTO center;
+    private final Map<String, Integer> valuesMap;
 
+    //data for formula-based figures
     protected FormulaFigure(FigureName name, String formula, CoordinateDTO center, Map<String, Integer> valuesMap) {
-        super(name);
+        super(name, FORMULA);
         this.center = center;
         this.valuesMap = valuesMap;
         this.formula = formula;

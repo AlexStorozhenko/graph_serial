@@ -1,34 +1,37 @@
-package com.ptoop.graph.command;
+package com.ptoop.graph.factory;
 
 import com.ptoop.graph.dto.CoordinateDTO;
 import com.ptoop.graph.model.CircleFigure;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 /**
  * @author: Alexey Storozhenko
  * @since: 11.03.2018
  */
-public class CreateCircleCommand extends AbstractCommand<CircleFigure> {
+public class CreateCircleFactory extends AbstractFactory<CircleFigure> {
 
-    public CreateCircleCommand(BufferedReader br) {
+    public CreateCircleFactory(Scanner br) {
         super(br);
     }
 
-    public CircleFigure execute() throws IOException {
+    public CircleFigure create() throws IOException {
         System.out.print("Center X value: ");
-        int x1 = Integer.parseInt(br.readLine());
+        while (!sc.hasNextInt()) sc.next();
+        int x1 = sc.nextInt();
         System.out.print("Center Y value: ");
-        int y1 = Integer.parseInt(br.readLine());
+        while (!sc.hasNextInt()) sc.next();
+        int y1 = sc.nextInt();
         System.out.print("Radius value: ");
-        int rad = Integer.parseInt(br.readLine());
+        while (!sc.hasNextInt()) sc.next();
+        int rad = sc.nextInt();
         Map<String, Integer> values = new HashMap<>();
         values.put("r", rad);
-
+        sc.nextLine();
         return new CircleFigure(new CoordinateDTO(x1, y1), values);
     }
 }

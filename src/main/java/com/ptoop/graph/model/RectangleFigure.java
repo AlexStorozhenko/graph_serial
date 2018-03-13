@@ -1,6 +1,7 @@
 package com.ptoop.graph.model;
 
 import com.ptoop.graph.dto.CoordinateDTO;
+import com.ptoop.graph.model.base.CoordinateFigure;
 
 import java.util.Arrays;
 import java.util.List;
