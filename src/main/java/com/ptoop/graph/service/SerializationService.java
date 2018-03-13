@@ -2,21 +2,16 @@ package com.ptoop.graph.service;
 
 import com.esotericsoftware.yamlbeans.YamlReader;
 import com.esotericsoftware.yamlbeans.YamlWriter;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import com.ptoop.graph.dto.CumulativeDTO;
 import com.ptoop.graph.model.base.BaseFigure;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
-import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.io.File.separator;
 
 /**
  * @author: Alexey Storozhenko
@@ -29,17 +24,13 @@ public class SerializationService {
     @Autowired
     ResourceLoader resourceLoader;
 
-    private static final String filename = "figures.yml";
-
     //deserialization to yml file
     public void serializeFiguresYaml(List<BaseFigure> figures, String path) {
         if (figures.size() > 0) {
             System.out.println("Serialization of figures...");
-            CumulativeDTO dto = new CumulativeDTO();
-            dto.setFigures(figures);
             FileWriter fw = null;
             try {
-                fw = new FileWriter(path + filename);
+                fw = new FileWriter(path);
                 YamlWriter writer = new YamlWriter(fw);
                 writer.write(figures);
                 writer.close();
@@ -64,7 +55,7 @@ public class SerializationService {
         List<BaseFigure> figures = new ArrayList<BaseFigure>();
         YamlReader reader = null;
         try {
-            reader = new YamlReader(new InputStreamReader(new FileInputStream(new File(path + filename))));
+            reader = new YamlReader(new InputStreamReader(new FileInputStream(new File(path))));
             figures = (reader.read(figures.getClass()));
         } catch (IOException e) {
             e.printStackTrace();
@@ -85,7 +76,7 @@ public class SerializationService {
             OutputStream buffer = null;
             ObjectOutputStream oos = null;
             try {
-                fos = new FileOutputStream(new File(path + filename));
+                fos = new FileOutputStream(new File(path));
                 buffer = new BufferedOutputStream(fos);
                 oos = new ObjectOutputStream(buffer);
                 oos.writeObject(figures);
@@ -133,7 +124,7 @@ public class SerializationService {
         InputStream buffer = null;
         ObjectInputStream ois = null;
         try {
-            fis = new FileInputStream(new File(path + filename));
+            fis = new FileInputStream(new File(path));
             buffer = new BufferedInputStream(fis);
             ois = new ObjectInputStream(buffer);
             figures = (List<BaseFigure>) ois.readObject();

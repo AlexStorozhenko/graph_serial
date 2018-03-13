@@ -1,4 +1,4 @@
-package com.ptoop.graph.command;
+package com.ptoop.graph.command.draw;
 
 import com.ptoop.graph.dto.CoordinateDTO;
 import com.ptoop.graph.model.base.CoordinateFigure;
@@ -7,7 +7,7 @@ import com.ptoop.graph.model.base.CoordinateFigure;
  * @author: Alexey Storozhenko
  * @since: 13.03.2018
  */
-public class DrawCoordFigureCommand implements ICommand<CoordinateFigure> {
+public class DrawCoordFigureCommand implements IDrawCommand<CoordinateFigure> {
 
     @Override
     public void execute(CoordinateFigure figure) {

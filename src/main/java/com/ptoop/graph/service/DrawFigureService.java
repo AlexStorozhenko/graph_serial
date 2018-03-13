@@ -1,8 +1,8 @@
 package com.ptoop.graph.service;
 
-import com.ptoop.graph.command.DrawCoordFigureCommand;
-import com.ptoop.graph.command.DrawFormulaFigureCommand;
-import com.ptoop.graph.command.ICommand;
+import com.ptoop.graph.command.draw.DrawCoordFigureCommand;
+import com.ptoop.graph.command.draw.DrawFormulaFigureCommand;
+import com.ptoop.graph.command.draw.IDrawCommand;
 import com.ptoop.graph.model.FigureType;
 import com.ptoop.graph.model.base.BaseFigure;
 
@@ -18,12 +18,12 @@ import static com.ptoop.graph.model.FigureType.FORMULA;
  */
 public class DrawFigureService {
 
-    private static final Map<FigureType, ICommand> commandMap = createCommandMap();
+    private static final Map<FigureType, IDrawCommand> commandMap = createCommandMap();
 
     //map of draw commands
-    private static Map<FigureType, ICommand> createCommandMap()
+    private static Map<FigureType, IDrawCommand> createCommandMap()
     {
-        Map<FigureType, ICommand> commandMap = new HashMap<FigureType, ICommand>();
+        Map<FigureType, IDrawCommand> commandMap = new HashMap<FigureType, IDrawCommand>();
         commandMap.put(COORDINATE, new DrawCoordFigureCommand());
         commandMap.put(FORMULA, new DrawFormulaFigureCommand());
         return commandMap;

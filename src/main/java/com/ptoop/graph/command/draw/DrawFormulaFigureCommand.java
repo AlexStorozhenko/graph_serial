@@ -1,4 +1,4 @@
-package com.ptoop.graph.command;
+package com.ptoop.graph.command.draw;
 
 import com.ptoop.graph.model.base.FormulaFigure;
 
@@ -6,7 +6,7 @@ import com.ptoop.graph.model.base.FormulaFigure;
  * @author: Alexey Storozhenko
  * @since: 13.03.2018
  */
-public class DrawFormulaFigureCommand implements ICommand<FormulaFigure> {
+public class DrawFormulaFigureCommand implements IDrawCommand<FormulaFigure> {
 
     @Override
     public void execute(FormulaFigure figure) {
