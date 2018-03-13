@@ -12,6 +12,9 @@ import java.util.Map;
 public class EllipseFigure extends FormulaFigure {
     private static final String ellipseFormula = "EllipseFormula";
 
+    public EllipseFigure() {
+        super();
+    }
     public EllipseFigure(CoordinateDTO center, Map<String, Integer> data) {
         super(FigureName.ELLIPSE, ellipseFormula, center, data);
     }

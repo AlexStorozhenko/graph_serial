@@ -12,9 +12,14 @@ import static com.ptoop.graph.model.FigureType.FORMULA;
  * @since: 10.03.2018
  */
 public abstract class FormulaFigure extends BaseFigure{
-    private final String formula;
-    private final CoordinateDTO center;
-    private final Map<String, Integer> valuesMap;
+    private String formula;
+    private CoordinateDTO center;
+    private Map<String, Integer> valuesMap;
+
+
+    protected FormulaFigure() {
+        super();
+    }
 
     //data for formula-based figures
     protected FormulaFigure(FigureName name, String formula, CoordinateDTO center, Map<String, Integer> valuesMap) {
@@ -34,5 +39,17 @@ public abstract class FormulaFigure extends BaseFigure{
 
     public Map<String, Integer> getValuesMap() {
         return valuesMap;
+    }
+
+    public void setFormula(String formula) {
+        this.formula = formula;
+    }
+
+    public void setCenter(CoordinateDTO center) {
+        this.center = center;
+    }
+
+    public void setValuesMap(Map<String, Integer> valuesMap) {
+        this.valuesMap = valuesMap;
     }
 }

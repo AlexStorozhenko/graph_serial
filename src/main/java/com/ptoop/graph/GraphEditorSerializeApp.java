@@ -1,11 +1,9 @@
 package com.ptoop.graph;
 
-import com.ptoop.graph.command.DrawCoordFigureCommand;
-import com.ptoop.graph.command.DrawFormulaFigureCommand;
-import com.ptoop.graph.command.ICommand;
 import com.ptoop.graph.factory.*;
-import com.ptoop.graph.model.FigureType;
 import com.ptoop.graph.model.base.BaseFigure;
+import com.ptoop.graph.service.SerializationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,11 +13,7 @@ import java.io.IOException;
 import java.util.*;
 
 import static com.ptoop.graph.model.FigureName.*;
-import static com.ptoop.graph.model.FigureType.COORDINATE;
-import static com.ptoop.graph.model.FigureType.FORMULA;
 import static com.ptoop.graph.service.DrawFigureService.drawFigure;
-import static com.ptoop.graph.service.SerializationService.deserializeFigures;
-import static com.ptoop.graph.service.SerializationService.serializeFigures;
 import static java.io.File.separator;
 
 /**
@@ -29,6 +23,9 @@ import static java.io.File.separator;
 @SpringBootApplication
 public class GraphEditorSerializeApp implements CommandLineRunner {
 
+    @Autowired
+    SerializationService serializationService;
+
     private static final String addComm = "ADD";
     private static final String editComm = "UPDATE";
     private static final String removeComm = "REMOVE";
@@ -37,7 +34,7 @@ public class GraphEditorSerializeApp implements CommandLineRunner {
     private static final String deserialComm = "DESERIAL";
     private static final String printComm = "PRINT";
     private static final String drawComm = "DRAW";
-    private static String serialPath = System.getProperty("user.dir") + "/serialized/";
+    private static String serialPath = System.getProperty("user.dir") + separator +"serialized";
 
     private static Scanner sc = null;
     private static final Map<String, AbstractFactory> factoryMap = createFactoryMap();
@@ -128,14 +125,14 @@ public class GraphEditorSerializeApp implements CommandLineRunner {
                     //figure list serialization
                     case serialComm:
                         if (figureList.size() > 0) {
-                            serializeFigures(figureList, serialPath);
+                            serializationService.serializeFiguresYaml(figureList, serialPath);
                         } else {
                             System.out.println("Figure list is empty");
                         }
                         break;
                     //figure list deserialization
                     case deserialComm:
-                        figureList = deserializeFigures(serialPath);
+                        figureList = serializationService.deserializeFiguresYaml(serialPath);
                         break;
                     //figure list print
                     case printComm:

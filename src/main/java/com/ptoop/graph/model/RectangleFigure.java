@@ -15,12 +15,13 @@ public class RectangleFigure extends CoordinateFigure {
     final private List<CoordinateDTO> fullCoordinateList;
 
     public RectangleFigure(int valueX1, int valueY1, int valueX2, int valueY2) {
-        super(FigureName.RECTANGLE, Arrays.asList(new CoordinateDTO(valueX1, valueY1),
-                                                  new CoordinateDTO(valueX2, valueY2)));
-        //calculate full rectangle coordinates
+        super(FigureName.RECTANGLE, null);
+        //calculate rest rectangle coordinates
         List<CoordinateDTO> fullCoordinateList = Arrays.asList(new CoordinateDTO(valueX1, valueY1),
                                                                new CoordinateDTO(valueX2, valueY2));
-        fullCoordinateList.addAll(coordinateList);
+        //add initial values
+        fullCoordinateList.addAll(Arrays.asList(new CoordinateDTO(valueX1, valueY1),
+                                                new CoordinateDTO(valueX2, valueY2)));
         this.fullCoordinateList = fullCoordinateList;
     }
 

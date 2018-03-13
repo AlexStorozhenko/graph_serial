@@ -3,11 +3,8 @@ package com.ptoop.graph.service;
 import com.ptoop.graph.command.DrawCoordFigureCommand;
 import com.ptoop.graph.command.DrawFormulaFigureCommand;
 import com.ptoop.graph.command.ICommand;
-import com.ptoop.graph.dto.CoordinateDTO;
 import com.ptoop.graph.model.FigureType;
 import com.ptoop.graph.model.base.BaseFigure;
-import com.ptoop.graph.model.base.CoordinateFigure;
-import com.ptoop.graph.model.base.FormulaFigure;
 
 import java.util.HashMap;
 import java.util.Map;

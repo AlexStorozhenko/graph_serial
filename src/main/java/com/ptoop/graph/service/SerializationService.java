@@ -1,30 +1,96 @@
 package com.ptoop.graph.service;
 
+import com.esotericsoftware.yamlbeans.YamlReader;
+import com.esotericsoftware.yamlbeans.YamlWriter;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import com.ptoop.graph.dto.CumulativeDTO;
 import com.ptoop.graph.model.base.BaseFigure;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.stereotype.Service;
+import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author: Alexey Storozhenko
  * @since: 13.03.2018
  */
+
+@Service
 public class SerializationService {
 
-    private static final String filename = "figures.txt";
+    @Autowired
+    ResourceLoader resourceLoader;
+
+    private static final String filename = "figures.yml";
+
+    //deserialization to yml file
+    public void serializeFiguresYaml(List<BaseFigure> figures, String path) {
+        if (figures.size() > 0) {
+            System.out.println("Serialization of figures...");
+            CumulativeDTO dto = new CumulativeDTO();
+            dto.setFigures(figures);
+            FileWriter fw = null;
+            try {
+                fw = new FileWriter(path + filename);
+                YamlWriter writer = new YamlWriter(fw);
+                writer.write(figures);
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    fw.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            System.out.println("Serialization completed.");
+        } else {
+            System.out.println("Figure list is empty");
+        }
+    }
+
+    //deserialization from yml file
+    public List<BaseFigure> deserializeFiguresYaml(String path) {
+        System.out.println("Deserialization of figures...");
+        List<BaseFigure> figures = new ArrayList<BaseFigure>();
+        YamlReader reader = null;
+        try {
+            reader = new YamlReader(new InputStreamReader(new FileInputStream(new File(path + filename))));
+            figures = (reader.read(figures.getClass()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Deserialization completed.");
+        if (figures == null) {
+            figures = new ArrayList<>();
+        }
+        return figures;
+    }
 
     //figure list serialization to text file
     public static void serializeFigures(List<BaseFigure> figures, String path) {
         if (figures.size() > 0) {
             System.out.println("Serialization of figures...");
             FileOutputStream fos = null;
+            OutputStream buffer = null;
             ObjectOutputStream oos = null;
             try {
                 fos = new FileOutputStream(new File(path + filename));
-                oos = new ObjectOutputStream(fos);
+                buffer = new BufferedOutputStream(fos);
+                oos = new ObjectOutputStream(buffer);
                 oos.writeObject(figures);
                 oos.flush();
-                oos.close();
+                buffer.close();
                 fos.close();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -34,6 +100,13 @@ public class SerializationService {
                 if (oos != null) {
                     try {
                         oos.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (buffer != null) {
+                    try {
+                        buffer.close();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -57,12 +130,15 @@ public class SerializationService {
         System.out.println("Deserialization of figures...");
         List<BaseFigure> figures = null;
         FileInputStream fis = null;
+        InputStream buffer = null;
         ObjectInputStream ois = null;
         try {
             fis = new FileInputStream(new File(path + filename));
-            ois = new ObjectInputStream(fis);
+            buffer = new BufferedInputStream(fis);
+            ois = new ObjectInputStream(buffer);
             figures = (List<BaseFigure>) ois.readObject();
             fis.close();
+            buffer.close();
             ois.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -78,6 +154,13 @@ public class SerializationService {
                     e.printStackTrace();
                 }
             }
+            if (buffer != null) {
+                try {
+                    buffer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             if (fis != null) {
                 try {
                     fis.close();
@@ -87,6 +170,9 @@ public class SerializationService {
             }
         }
         System.out.println("Deserialization completed.");
+        if (figures == null) {
+            figures = new ArrayList<>();
+        }
         return figures;
     }
 }

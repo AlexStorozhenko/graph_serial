@@ -10,6 +10,9 @@ public class CoordinateDTO implements Serializable{
     private Integer axisX;
     private Integer axisY;
 
+    public CoordinateDTO() {
+    }
+
     public CoordinateDTO(int axisX, int axisY) {
         this.axisX = axisX;
         this.axisY = axisY;

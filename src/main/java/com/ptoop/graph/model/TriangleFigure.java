@@ -11,6 +11,10 @@ import java.util.Arrays;
  */
 public class TriangleFigure extends CoordinateFigure {
 
+    public TriangleFigure() {
+        super();
+    }
+
     public TriangleFigure(int valueX1, int valueY1, int valueX2, int valueY2 , int valueX3, int valueY3) {
         super(FigureName.TRIANGLE, Arrays.asList(new CoordinateDTO(valueX1, valueY1),
                                              new CoordinateDTO(valueX2, valueY2),

@@ -12,6 +12,9 @@ import java.util.Map;
 public class CircleFigure extends FormulaFigure {
     private static final String circleFormula = "CircleFormula";
 
+    public CircleFigure() {
+        super();
+    }
     public CircleFigure(CoordinateDTO center, Map<String, Integer> data) {
        super(FigureName.CIRCLE, circleFormula, center, data);
    }

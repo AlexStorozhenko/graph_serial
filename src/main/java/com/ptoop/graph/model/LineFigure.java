@@ -13,5 +13,9 @@ public class LineFigure extends CoordinateFigure {
 
     public LineFigure(int valueX1, int valueY1, int valueX2, int valueY2) {
        super(FigureName.LINE, Arrays.asList(new CoordinateDTO(valueX1, valueY1), new CoordinateDTO(valueX2, valueY2)));
-   }
+    }
+
+    public LineFigure() {
+        super();
+    }
 }

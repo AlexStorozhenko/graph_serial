@@ -11,10 +11,16 @@ import java.util.Date;
  * @since: 09.03.2018
  */
 public abstract class BaseFigure implements Serializable {
-    protected final FigureType type;
-    protected final FigureName name;
+    protected FigureType type;
+    protected FigureName name;
     protected String description;
     protected Date creationDate;
+
+    protected BaseFigure() {
+        this.name = null;
+        this.type = null;
+        this.creationDate = null;
+    }
 
     protected BaseFigure(FigureName name, FigureType type) {
         this.name = name;
@@ -44,5 +50,13 @@ public abstract class BaseFigure implements Serializable {
 
     public FigureType getType() {
         return type;
+    }
+
+    public void setType(FigureType type) {
+        this.type = type;
+    }
+
+    public void setName(FigureName name) {
+        this.name = name;
     }
 }

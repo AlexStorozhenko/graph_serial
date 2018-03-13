@@ -13,9 +13,12 @@ import static com.ptoop.graph.model.FigureType.COORDINATE;
  */
 public abstract class CoordinateFigure extends BaseFigure {
 
-    protected final List<CoordinateDTO> coordinateList;
+    private List<CoordinateDTO> coordinateList;
 
-    //data for point to point figures
+    //data for point to point
+    protected CoordinateFigure() {
+        super();
+    }
     protected CoordinateFigure(FigureName name, List<CoordinateDTO> coordinateList) {
         super(name, COORDINATE);
         this.coordinateList = coordinateList;
@@ -23,5 +26,9 @@ public abstract class CoordinateFigure extends BaseFigure {
 
     public List<CoordinateDTO> getCoordinateList() {
         return coordinateList;
+    }
+
+    public void setCoordinateList(List<CoordinateDTO> coordinateList) {
+        this.coordinateList = coordinateList;
     }
 }
