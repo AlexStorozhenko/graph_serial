@@ -20,16 +20,11 @@ import static com.ptoop.graph.util.CommandName.*;
 @Service
 public class BasicInitializationService extends CoreInitializationService{
 
-    private SerializationService serializationService = new SerializationService();
-
-    private BasicDrawFigureService drawFigureService = new BasicDrawFigureService();
-
     //maps of factories
     @PostConstruct
     @Override
     public void initializeFactories()
     {
-        drawFigureService.createCommandMap();
         scanner = new Scanner(System.in);
         factoryMap = new HashMap<String, AbstractFactory>();
         factoryMap.put(LINE.name(), new CreateLineFactory(scanner));
@@ -38,15 +33,18 @@ public class BasicInitializationService extends CoreInitializationService{
         factoryMap.put(TETRAGON.name(), new CreateTetragonFactory(scanner));
         factoryMap.put(CIRCLE.name(), new CreateCircleFactory(scanner));
         factoryMap.put(ELLIPSE.name(), new CreateEllipseFactory(scanner));
+    }
 
+    @PostConstruct
+    public void initializeCommands() {
         userCommandMap = new HashMap<String, AbstractUserCommand>();
-        userCommandMap.put(ADD.name(), new UserAddCommand(factoryMap, scanner));
-        userCommandMap.put(UPDATE.name(), new UserEditCommand(factoryMap, scanner));
-        userCommandMap.put(REMOVE.name(), new UserRemoveCommand(factoryMap, scanner));
-        userCommandMap.put(PRINT.name(), new UserPrintCommand(factoryMap, scanner));
-        userCommandMap.put(DRAW.name(), new UserDrawCommand(factoryMap, scanner, drawFigureService));
-        userCommandMap.put(SERIAL.name(), new UserSerializeCommand(factoryMap, scanner, serializationService));
-        userCommandMap.put(DESERIAL.name(), new UserDeserializeCommand(factoryMap, scanner, serializationService));
+        userCommandMap.put(ADD.name(), new UserAddCommand(scanner));
+        userCommandMap.put(UPDATE.name(), new UserEditCommand(scanner));
+        userCommandMap.put(REMOVE.name(), new UserRemoveCommand(scanner));
+        userCommandMap.put(PRINT.name(), new UserPrintCommand(scanner));
+        userCommandMap.put(DRAW.name(), new UserDrawCommand(scanner, drawFigureService));
+        userCommandMap.put(SERIAL.name(), new UserSerializeCommand(scanner, serializationService));
+        userCommandMap.put(DESERIAL.name(), new UserDeserializeCommand(scanner, serializationService));
     }
 
     public Map<String, AbstractFactory> getFactoryMap() {
@@ -60,4 +58,5 @@ public class BasicInitializationService extends CoreInitializationService{
     public Scanner getScanner() {
         return scanner;
     }
+
 }

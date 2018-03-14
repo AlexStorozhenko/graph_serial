@@ -8,11 +8,6 @@
     <artifactId>graph-serial</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
-    <modules>
-        <module>basic-func</module>
-        <module>graph-core</module>
-        <module>ext-func</module>
-    </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -57,6 +52,11 @@
         <dependency>
             <groupId>com.ptoop</groupId>
             <artifactId>basic-func</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ptoop</groupId>
+            <artifactId>ext-func</artifactId>
             <version>1.0</version>
         </dependency>
     </dependencies>

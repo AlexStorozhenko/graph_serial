@@ -1,28 +1,30 @@
 package com.ptoop.graph.model.base;
 
 import com.ptoop.graph.dto.CoordinateDTO;
-import com.ptoop.graph.model.FigureName;
+import com.ptoop.graph.model.NewFigureName;
 
 import java.util.Map;
 
-import static com.ptoop.graph.model.FigureType.FORMULA;
+import static com.ptoop.graph.model.NewFigureType.COMPLEX;
 
 /**
  * @author: Alexey Storozhenko
  * @since: 10.03.2018
  */
-public abstract class FormulaFigure extends BaseFigure{
+public abstract class ComplexFigure extends BaseFigure {
+
     private String formula;
+    private String rule;
     private CoordinateDTO center;
     private Map<String, Integer> valuesMap;
 
-    protected FormulaFigure() {
+    protected ComplexFigure() {
         super();
     }
 
     //data for formula-based figures
-    protected FormulaFigure(FigureName name, String formula, CoordinateDTO center, Map<String, Integer> valuesMap) {
-        super(name.name(), FORMULA.name());
+    protected ComplexFigure(NewFigureName name, String formula, String rule, CoordinateDTO center, Map<String, Integer> valuesMap) {
+        super(name.name(), COMPLEX.name());
         this.center = center;
         this.valuesMap = valuesMap;
         this.formula = formula;
@@ -50,5 +52,13 @@ public abstract class FormulaFigure extends BaseFigure{
 
     public void setValuesMap(Map<String, Integer> valuesMap) {
         this.valuesMap = valuesMap;
+    }
+
+    public String getRule() {
+        return rule;
+    }
+
+    public void setRule(String rule) {
+        this.rule = rule;
     }
 }

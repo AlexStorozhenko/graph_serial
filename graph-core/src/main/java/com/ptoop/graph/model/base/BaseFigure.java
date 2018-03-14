@@ -1,8 +1,5 @@
 package com.ptoop.graph.model.base;
 
-import com.ptoop.graph.model.FigureName;
-import com.ptoop.graph.model.FigureType;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -11,8 +8,8 @@ import java.util.Date;
  * @since: 09.03.2018
  */
 public abstract class BaseFigure implements Serializable {
-    protected FigureType type;
-    protected FigureName name;
+    protected String type;
+    protected String name;
     protected String description;
     protected Date creationDate;
 
@@ -22,14 +19,10 @@ public abstract class BaseFigure implements Serializable {
         this.creationDate = null;
     }
 
-    protected BaseFigure(FigureName name, FigureType type) {
+    protected BaseFigure(String name, String type) {
         this.name = name;
         this.type = type;
         this.creationDate = new Date();
-    }
-
-    public FigureName getName() {
-        return name;
     }
 
     public String getDescription() {
@@ -48,15 +41,19 @@ public abstract class BaseFigure implements Serializable {
         this.creationDate = creationDate;
     }
 
-    public FigureType getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(FigureType type) {
+    public void setType(String type) {
         this.type = type;
     }
 
-    public void setName(FigureName name) {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
     }
 }

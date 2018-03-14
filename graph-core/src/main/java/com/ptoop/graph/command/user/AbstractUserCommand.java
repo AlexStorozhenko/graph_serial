@@ -32,10 +32,9 @@ public abstract class AbstractUserCommand {
         return serialPath + "figures.yml";
     }
 
-    public AbstractUserCommand(Map<String, AbstractFactory> factoryMap, Scanner sc) {
-        this.factoryMap = factoryMap;
+    public AbstractUserCommand(Scanner sc) {
         this.sc = sc;
     }
 
-    abstract public void execute(List<BaseFigure> figureList) throws IOException;
+    abstract public void execute(List<BaseFigure> figureList, Map<String, AbstractFactory> factoryMap) throws IOException;
 }

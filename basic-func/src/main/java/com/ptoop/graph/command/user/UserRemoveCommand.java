@@ -15,12 +15,12 @@ import java.util.Scanner;
  */
 public class UserRemoveCommand extends AbstractUserCommand {
 
-    public UserRemoveCommand(Map<String, AbstractFactory> factoryMap, Scanner sc) {
-        super(factoryMap, sc);
+    public UserRemoveCommand(Scanner sc) {
+        super(sc);
     }
 
     @Override
-    public void execute(List<BaseFigure> figureList) throws IOException {
+    public void execute(List<BaseFigure> figureList, Map<String, AbstractFactory> factoryMap) throws IOException {
         System.out.print("Type figure number: ");
         int figNum = sc.nextInt();
         if (figNum <= figureList.size()) {

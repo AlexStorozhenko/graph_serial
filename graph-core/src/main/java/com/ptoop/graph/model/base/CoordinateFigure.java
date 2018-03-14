@@ -20,7 +20,7 @@ public abstract class CoordinateFigure extends BaseFigure {
         super();
     }
     protected CoordinateFigure(FigureName name, List<CoordinateDTO> coordinateList) {
-        super(name, COORDINATE);
+        super(name.name(), COORDINATE.name());
         this.coordinateList = coordinateList;
     }
 

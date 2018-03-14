@@ -1,5 +1,6 @@
 package com.ptoop.graph;
 
+import com.ptoop.graph.factory.AbstractFactory;
 import com.ptoop.graph.model.base.BaseFigure;
 import com.ptoop.graph.service.CoreDrawFigureService;
 import com.ptoop.graph.service.CoreInitializationService;
@@ -15,6 +16,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -45,7 +47,7 @@ public class GraphEditorSerializeApp implements CommandLineRunner {
         List<BaseFigure> figureList = new ArrayList<>();
         sc = initService.getScanner();
 
-        pluginInitService.loadPlugins(initService);
+        Map<String, AbstractFactory> allFactories = pluginInitService.loadPlugins(initService);
 
         System.out.println("  -----  Graphic editor  -----  ");
         System.out.println("");
@@ -55,7 +57,7 @@ public class GraphEditorSerializeApp implements CommandLineRunner {
                 System.out.print("Type command: ");
                 command = sc.nextLine().toUpperCase();
                 if (EnumUtils.isValidEnum(CommandName.class, command)) {
-                    initService.getUserCommandMap().get(command).execute(figureList);
+                    initService.getUserCommandMap().get(command).execute(figureList, allFactories);
                 } else {
                     if (!command.equals("EXIT")) {
                         System.out.println("Command " + command + " not found.");

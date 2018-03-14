@@ -15,12 +15,12 @@ import java.util.Scanner;
  */
 public class UserPrintCommand extends AbstractUserCommand {
 
-    public UserPrintCommand(Map<String, AbstractFactory> factoryMap, Scanner sc) {
-        super(factoryMap, sc);
+    public UserPrintCommand(Scanner sc) {
+        super(sc);
     }
 
     @Override
-    public void execute(List<BaseFigure> figureList) throws IOException {
+    public void execute(List<BaseFigure> figureList, Map<String, AbstractFactory> factoryMap) throws IOException {
         if (figureList.size() > 0) {
             int i = 0;
             for (BaseFigure figure : figureList) {

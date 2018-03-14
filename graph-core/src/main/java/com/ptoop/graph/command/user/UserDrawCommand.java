@@ -17,13 +17,13 @@ public class UserDrawCommand extends AbstractUserCommand {
 
     private CoreDrawFigureService drawFigureService;
 
-    public UserDrawCommand(Map<String, AbstractFactory> factoryMap, Scanner sc, CoreDrawFigureService drawFigureService) {
-        super(factoryMap, sc);
+    public UserDrawCommand(Scanner sc, CoreDrawFigureService drawFigureService) {
+        super(sc);
         this.drawFigureService = drawFigureService;
     }
 
     @Override
-    public void execute(List<BaseFigure> figureList) throws IOException {
+    public void execute(List<BaseFigure> figureList, Map<String, AbstractFactory> factoryMap) throws IOException {
         if (figureList.size() > 0) {
             for (BaseFigure figure : figureList) {
                 drawFigureService.drawFigure(figure);

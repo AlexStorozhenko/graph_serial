@@ -15,12 +15,12 @@ import java.util.Scanner;
  */
 public class UserAddCommand extends AbstractUserCommand {
 
-    public UserAddCommand(Map<String, AbstractFactory> factoryMap, Scanner sc) {
-        super(factoryMap, sc);
+    public UserAddCommand(Scanner sc) {
+        super(sc);
     }
 
     @Override
-    public void execute(List<BaseFigure> figureList) throws IOException {
+    public void execute(List<BaseFigure> figureList, Map<String, AbstractFactory> factoryMap) throws IOException {
         System.out.print("Type figure name: ");
         String figureName = sc.nextLine().toUpperCase();
         if (factoryMap.get(figureName) != null) {

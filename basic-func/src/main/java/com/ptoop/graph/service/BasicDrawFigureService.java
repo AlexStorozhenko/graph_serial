@@ -26,8 +26,8 @@ public class BasicDrawFigureService extends CoreDrawFigureService {
     @PostConstruct
     protected void createCommandMap()
     {
-        commandMap = new HashMap<FigureType, IDrawCommand>();
-        commandMap.put(COORDINATE, new DrawCoordFigureCommand());
-        commandMap.put(FORMULA, new DrawFormulaFigureCommand());
+        commandMap = new HashMap<String, IDrawCommand>();
+        commandMap.put(COORDINATE.name(), new DrawCoordFigureCommand());
+        commandMap.put(FORMULA.name(), new DrawFormulaFigureCommand());
     }
 }

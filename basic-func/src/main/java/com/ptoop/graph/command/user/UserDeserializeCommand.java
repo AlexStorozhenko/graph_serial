@@ -17,13 +17,13 @@ public class UserDeserializeCommand extends AbstractUserCommand {
 
     private SerializationService serializationService;
 
-    public UserDeserializeCommand(Map<String, AbstractFactory> factoryMap, Scanner sc, SerializationService serializationService) {
-        super(factoryMap, sc);
+    public UserDeserializeCommand(Scanner sc, SerializationService serializationService) {
+        super(sc);
         this.serializationService = serializationService;
     }
 
     @Override
-    public void execute(List<BaseFigure> figureList) throws IOException {
+    public void execute(List<BaseFigure> figureList, Map<String, AbstractFactory> factoryMap) throws IOException {
         figureList.clear();
         figureList.addAll(serializationService.deserializeFiguresYaml(serialPath));
     }

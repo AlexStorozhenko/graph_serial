@@ -14,13 +14,12 @@ import java.util.Map;
  */
 public class CoreDrawFigureService {
 
-    protected Map<FigureType, IDrawCommand> commandMap;
+    protected Map<String, IDrawCommand> commandMap = new HashMap<String, IDrawCommand>();
 
     //map of draw commands
     @PostConstruct
     protected void createCommandMap()
     {
-        commandMap = new HashMap<FigureType, IDrawCommand>();
         //commandMap.put(COORDINATE, new DrawCoordFigureCommand());
         //commandMap.put(FORMULA, new DrawFormulaFigureCommand());
     }
@@ -33,7 +32,7 @@ public class CoreDrawFigureService {
         }
     }
 
-    public Map<FigureType, IDrawCommand> getCommandMap() {
+    public Map<String, IDrawCommand> getCommandMap() {
         return commandMap;
     }
 }

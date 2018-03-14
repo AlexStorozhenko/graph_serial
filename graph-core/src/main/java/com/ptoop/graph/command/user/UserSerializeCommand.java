@@ -17,13 +17,13 @@ public class UserSerializeCommand extends AbstractUserCommand {
 
     private SerializationService serializationService;
 
-    public UserSerializeCommand(Map<String, AbstractFactory> factoryMap, Scanner sc, SerializationService serializationService) {
-        super(factoryMap, sc);
+    public UserSerializeCommand(Scanner sc, SerializationService serializationService) {
+        super(sc);
         this.serializationService = serializationService;
     }
 
     @Override
-    public void execute(List<BaseFigure> figureList) throws IOException {
+    public void execute(List<BaseFigure> figureList, Map<String, AbstractFactory> factoryMap) throws IOException {
         if (figureList.size() > 0) {
             serializationService.serializeFiguresYaml(figureList, serialPath);
         } else {

@@ -2,6 +2,7 @@ package com.ptoop.graph.service;
 
 import com.ptoop.graph.command.user.AbstractUserCommand;
 import com.ptoop.graph.factory.AbstractFactory;
+import com.ptoop.graph.factory.CreateDottedCircleFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -9,31 +10,23 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import static com.ptoop.graph.model.NewFigureName.DCIRCLE;
+
 /**
  * @author: Alexey Storozhenko
  * @since: 13.03.2018
  */
 @Service
-public class CoreInitializationService {
-    protected Map<String, AbstractFactory> factoryMap;
-    protected Map<String, AbstractUserCommand> userCommandMap;
-    protected Scanner scanner;
-
-    protected SerializationService serializationService = new SerializationService();
-    protected CoreDrawFigureService drawFigureService = new CoreDrawFigureService();
+public class ExtInitializationService extends CoreInitializationService{
 
     //maps of factories
     @PostConstruct
+    @Override
     public void initializeFactories()
     {
         scanner = new Scanner(System.in);
         factoryMap = new HashMap<String, AbstractFactory>();
-
-    }
-
-    @PostConstruct
-    public void initializeCommands() {
-        userCommandMap = new HashMap<String, AbstractUserCommand>();
+        factoryMap.put(DCIRCLE.name(), new CreateDottedCircleFactory(scanner));
     }
 
     public Map<String, AbstractFactory> getFactoryMap() {
@@ -46,13 +39,5 @@ public class CoreInitializationService {
 
     public Scanner getScanner() {
         return scanner;
-    }
-
-    public CoreDrawFigureService getDrawFigureService() {
-        return drawFigureService;
-    }
-
-    public void setDrawFigureService(CoreDrawFigureService drawFigureService) {
-        this.drawFigureService = drawFigureService;
     }
 }

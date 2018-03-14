@@ -15,19 +15,19 @@ import java.util.Scanner;
  */
 public class UserEditCommand extends AbstractUserCommand {
 
-    public UserEditCommand(Map<String, AbstractFactory> factoryMap, Scanner sc) {
-        super(factoryMap, sc);
+    public UserEditCommand(Scanner sc) {
+        super(sc);
     }
 
     @Override
-    public void execute(List<BaseFigure> figureList) throws IOException {
+    public void execute(List<BaseFigure> figureList, Map<String, AbstractFactory> factoryMap) throws IOException {
         System.out.print("Type figure number: ");
         int figNum = sc.nextInt();
         sc.nextLine();
         if (figNum <= figureList.size()) {
             BaseFigure figure = figureList.get(figNum - 1);
             if (figure != null) {
-                factoryMap.get(figure.getName().name()).update(figure);
+                factoryMap.get(figure.getName()).update(figure);
                 System.out.println("Figure #" + figNum + " updated.");
             }
         } else {
