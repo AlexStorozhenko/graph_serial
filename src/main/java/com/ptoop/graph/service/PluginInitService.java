@@ -1,17 +1,8 @@
 package com.ptoop.graph.service;
 
-import com.ptoop.graph.command.user.*;
-import com.ptoop.graph.factory.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-
-import static com.ptoop.graph.model.FigureName.*;
-import static com.ptoop.graph.util.CommandName.*;
+import java.util.ServiceLoader;
 
 /**
  * @author: Alexey Storozhenko
@@ -20,4 +11,16 @@ import static com.ptoop.graph.util.CommandName.*;
 @Service
 public class PluginInitService {
 
+    //lookup for inherited class definitions in META-INF folder in app extension jars
+    public static void loadPlugins(CoreInitializationService service) {
+        for (final CoreInitializationService initService : ServiceLoader.load(CoreInitializationService.class)) {
+            initService.initializeFactories();
+            service.getFactoryMap().putAll(initService.getFactoryMap());
+            service.getUserCommandMap().putAll(initService.getUserCommandMap());
+        }
+//        for (final CoreDrawFigureService drawService : ServiceLoader.load(CoreDrawFigureService.class)) {
+//            drawService.createCommandMap();
+//            drawFigureService.getCommandMap().putAll(drawService.getCommandMap());
+//        }
+    }
 }

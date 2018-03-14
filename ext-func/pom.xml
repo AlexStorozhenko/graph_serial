@@ -1,24 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-  http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>graph-serial</artifactId>
+        <groupId>com.ptoop</groupId>
+        <version>1.0</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.ptoop</groupId>
-    <artifactId>graph-serial</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0</version>
-    <modules>
-        <module>basic-func</module>
-        <module>graph-core</module>
-        <module>ext-func</module>
-    </modules>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.1.RELEASE</version>
-    </parent>
+    <artifactId>ext-func</artifactId>
 
     <properties>
         <java.version>1.8</java.version>
@@ -54,21 +45,7 @@
             <artifactId>graph-core</artifactId>
             <version>1.0</version>
         </dependency>
-        <dependency>
-            <groupId>com.ptoop</groupId>
-            <artifactId>basic-func</artifactId>
-            <version>1.0</version>
-        </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <!-- Package as an executable jar/war -->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

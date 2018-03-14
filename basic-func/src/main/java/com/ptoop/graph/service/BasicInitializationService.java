@@ -20,17 +20,16 @@ import static com.ptoop.graph.util.CommandName.*;
 @Service
 public class BasicInitializationService extends CoreInitializationService{
 
-    @Autowired
-    SerializationService serializationService;
+    private SerializationService serializationService = new SerializationService();
 
-    @Autowired
-    BasicDrawFigureService drawFigureService;
+    private BasicDrawFigureService drawFigureService = new BasicDrawFigureService();
 
     //maps of factories
     @PostConstruct
     @Override
     public void initializeFactories()
     {
+        drawFigureService.createCommandMap();
         scanner = new Scanner(System.in);
         factoryMap = new HashMap<String, AbstractFactory>();
         factoryMap.put(LINE.name(), new CreateLineFactory(scanner));

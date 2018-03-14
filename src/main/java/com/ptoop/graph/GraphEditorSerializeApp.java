@@ -1,7 +1,9 @@
 package com.ptoop.graph;
 
 import com.ptoop.graph.model.base.BaseFigure;
+import com.ptoop.graph.service.CoreDrawFigureService;
 import com.ptoop.graph.service.CoreInitializationService;
+import com.ptoop.graph.service.PluginInitService;
 import com.ptoop.graph.util.CommandName;
 import org.apache.commons.lang3.EnumUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +26,15 @@ public class GraphEditorSerializeApp implements CommandLineRunner {
 
     private static Scanner sc = null;
 
-    @Qualifier("basicInitializationService")
+    @Qualifier("coreInitializationService")
     @Autowired
     CoreInitializationService initService;
+
+//    @Autowired
+//    CoreDrawFigureService drawFigureService;
+
+    @Autowired
+    PluginInitService pluginInitService;
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(GraphEditorSerializeApp.class, args);
@@ -36,6 +44,8 @@ public class GraphEditorSerializeApp implements CommandLineRunner {
     public void run(String... args) throws Exception {
         List<BaseFigure> figureList = new ArrayList<>();
         sc = initService.getScanner();
+
+        pluginInitService.loadPlugins(initService);
 
         System.out.println("  -----  Graphic editor  -----  ");
         System.out.println("");
