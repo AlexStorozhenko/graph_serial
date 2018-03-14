@@ -1,10 +1,11 @@
 package com.ptoop.graph;
 
 import com.ptoop.graph.model.base.BaseFigure;
-import com.ptoop.graph.service.InitializationService;
+import com.ptoop.graph.service.CoreInitializationService;
 import com.ptoop.graph.util.CommandName;
 import org.apache.commons.lang3.EnumUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,8 +24,9 @@ public class GraphEditorSerializeApp implements CommandLineRunner {
 
     private static Scanner sc = null;
 
+    @Qualifier("basicInitializationService")
     @Autowired
-    InitializationService initService;
+    CoreInitializationService initService;
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(GraphEditorSerializeApp.class, args);
