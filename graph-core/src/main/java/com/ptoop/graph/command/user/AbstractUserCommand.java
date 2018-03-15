@@ -18,19 +18,6 @@ import static java.io.File.separator;
 public abstract class AbstractUserCommand {
     protected Map<String, AbstractFactory> factoryMap;
     protected Scanner sc;
-    protected static final String serialPath = prepareSerialPath();
-
-    private static String prepareSerialPath() {
-        String serialPath = System.getProperty("user.dir") + separator + "serialized";
-        if (!serialPath.endsWith(separator)) {
-            serialPath = serialPath.concat(separator);
-        }
-        final File directory = new File(serialPath);
-        if (!directory.exists()) {
-            directory.mkdir();
-        }
-        return serialPath + "figures.yml";
-    }
 
     public AbstractUserCommand(Scanner sc) {
         this.sc = sc;

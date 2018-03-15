@@ -25,6 +25,6 @@ public class UserDeserializeCommand extends AbstractUserCommand {
     @Override
     public void execute(List<BaseFigure> figureList, Map<String, AbstractFactory> factoryMap) throws IOException {
         figureList.clear();
-        figureList.addAll(serializationService.deserializeFiguresYaml(serialPath));
+        figureList.addAll(serializationService.deserializeFiguresYaml());
     }
 }

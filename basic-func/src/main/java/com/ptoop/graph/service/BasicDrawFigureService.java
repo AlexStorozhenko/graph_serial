@@ -18,7 +18,6 @@ import static com.ptoop.graph.model.FigureType.FORMULA;
  * @author: Alexey Storozhenko
  * @since: 10.03.2018
  */
-@Service
 public class BasicDrawFigureService extends CoreDrawFigureService {
 
     //map of draw commands

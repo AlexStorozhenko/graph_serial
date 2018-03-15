@@ -56,7 +56,7 @@ public class GraphEditorSerializeApp implements CommandLineRunner {
             while (!command.equals("EXIT")) {
                 System.out.print("Type command: ");
                 command = sc.nextLine().toUpperCase();
-                if (EnumUtils.isValidEnum(CommandName.class, command)) {
+                if (initService.getUserCommandMap().get(command) != null) {
                     initService.getUserCommandMap().get(command).execute(figureList, allFactories);
                 } else {
                     if (!command.equals("EXIT")) {

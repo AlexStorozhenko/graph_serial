@@ -16,7 +16,6 @@ import static com.ptoop.graph.model.NewFigureName.DCIRCLE;
  * @author: Alexey Storozhenko
  * @since: 13.03.2018
  */
-@Service
 public class ExtInitializationService extends CoreInitializationService{
 
     //maps of factories

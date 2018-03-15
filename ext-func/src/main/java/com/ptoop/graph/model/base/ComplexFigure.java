@@ -28,6 +28,7 @@ public abstract class ComplexFigure extends BaseFigure {
         this.center = center;
         this.valuesMap = valuesMap;
         this.formula = formula;
+        this.rule = rule;
     }
 
     public String getFormula() {

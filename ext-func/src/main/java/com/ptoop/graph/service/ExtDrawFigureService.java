@@ -13,7 +13,6 @@ import static com.ptoop.graph.model.NewFigureType.COMPLEX;
  * @author: Alexey Storozhenko
  * @since: 10.03.2018
  */
-@Service
 public class ExtDrawFigureService extends CoreDrawFigureService {
 
     //map of draw commands

@@ -17,7 +17,6 @@ import static com.ptoop.graph.util.CommandName.*;
  * @author: Alexey Storozhenko
  * @since: 13.03.2018
  */
-@Service
 public class BasicInitializationService extends CoreInitializationService{
 
     //maps of factories
