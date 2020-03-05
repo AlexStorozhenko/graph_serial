@@ -26,8 +26,8 @@ import java.util.Scanner;
 public class GraphEditorSerializeApp implements CommandLineRunner {
 
     private static Scanner sc = null;
-    private static final String exitComm = "EXIT";
-    private static final String helpComm = "HELP";
+    private static final String EXIT_COMM = "EXIT";
+    private static final String HELP_COMM = "HELP";
 
     @Qualifier("coreInitializationService")
     @Autowired
@@ -51,16 +51,16 @@ public class GraphEditorSerializeApp implements CommandLineRunner {
         System.out.println("");
         try {
             String command = "";
-            while (!command.equals(exitComm)) {
+            while (!command.equals(EXIT_COMM)) {
                 System.out.print("Type command: ");
                 command = sc.nextLine().toUpperCase();
                 if (initService.getUserCommandMap().get(command) != null) {
                     initService.getUserCommandMap().get(command).execute(figureList, allFactories);
                 } else {
                     switch (command) {
-                        case exitComm:
+                        case EXIT_COMM:
                             break;
-                        case helpComm:
+                        case HELP_COMM:
                             System.out.println("Command list:");
                             for (String comm : initService.getUserCommandMap().keySet()) {
                                 System.out.println(comm);
