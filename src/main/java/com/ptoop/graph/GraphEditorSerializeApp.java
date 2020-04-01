@@ -48,7 +48,7 @@ public class GraphEditorSerializeApp implements CommandLineRunner {
         Map<String, AbstractFactory> allFactories = pluginInitService.loadPlugins(initService);
 
         System.out.println("  -----  Graphic editor  -----  ");
-        System.out.println("");
+        System.out.println();
         try {
             String command = "";
             while (!command.equals(EXIT_COMM)) {
@@ -79,7 +79,7 @@ public class GraphEditorSerializeApp implements CommandLineRunner {
                 sc.close();
             }
         }
-        System.out.println("");
+        System.out.println();
         System.out.println("  -------  END  -------  ");
     }
 }

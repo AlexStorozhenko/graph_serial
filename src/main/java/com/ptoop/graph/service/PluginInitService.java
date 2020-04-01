@@ -14,7 +14,7 @@ import java.util.ServiceLoader;
 public class PluginInitService {
 
     //lookup for inherited class definitions in META-INF folder in app extension jars
-    public static Map<String, AbstractFactory> loadPlugins(CoreInitializationService service) {
+    public Map<String, AbstractFactory> loadPlugins(CoreInitializationService service) {
         CoreDrawFigureService coreDrawService = new CoreDrawFigureService();
         for (final CoreDrawFigureService drawService : ServiceLoader.load(CoreDrawFigureService.class)) {
             drawService.createCommandMap();
